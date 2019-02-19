@@ -1,0 +1,18 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+# route de test chargement fichier
+app_test_allCSV:
+    path: /Test/allCSV
+    controller: App\Controller\BasicController::allCSV
+    
+app_test_file-portion:
+    path: /Test/{typeData}
+    controller: App\Controller\BasicController::parser
+    requirements: 
+        typeData: temperature|co2|luminosity|humidity
+        
+app_test_file-portion2:
+    path: /Test/Lieu/{typeData}
+    controller: App\Controller\BasicController::parserLieu 
