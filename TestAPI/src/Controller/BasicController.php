@@ -74,6 +74,43 @@ class BasicController extends Controller
         }
         
     }
+    public function improved($typeData){
+        $publicResourcesFolderPath = $this->get('kernel')->getRootDir() . '/../public/';
+        $filename = "All-All-2017-09-01_2018-09-01.csv";
+            if (($handle = fopen($publicResourcesFolderPath.$filename, "r")) !== FALSE) {
+                $cpt = 0;
+                $tab = array();
+                $pos = 0;
+                $leg = "type".  ";" . "place" . ";" . "value" . ";" . "date" . ";" . "unit" . ";" . "ilot";
+                while ((($data = fgetcsv($handle,1000, ";")) !== FALSE)&&($cpt++ < 1000)) {
+                    //$num = count($data);
+                    if ((substr_count ($data[1], $typeData)) > 0){
+                        $ligne = '';
+                        foreach ($data as $elem){
+                            $ligne = $ligne . $elem . ";" ;
+                        }
+                        $tab[$pos] = $ligne;
+                        $pos++;
+                        //fputcsv($f,$data,";");
+                    }
+                    //echo "<p> $num champs à la ligne $row: <br /></p>\n";
+                    //$row++;
+                    //for ($c=0; $c < $num; $c++) {
+                    //    echo $data[$c] . "<br />\n";
+                    //}
+                }
+                fclose($handle);
+            }
+            $response = $this->render('retour.csv.twig',[
+                'tableau' => $tab,
+                'nbLigne' => $pos,
+                'legende' => $leg
+            ]);
+            $response->headers->set('Content-Type', 'text/csv');
+            $response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
+            return $response;        
+    }
+    
     
     
 }

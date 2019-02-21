@@ -15,4 +15,10 @@ app_test_file-portion:
         
 app_test_file-portion2:
     path: /Test/Lieu/{typeData}
-    controller: App\Controller\BasicController::parserLieu 
+    controller: App\Controller\BasicController::parserLieu
+
+app_test_file-portion3:
+    path: /Test/best/{typeData}
+    controller: App\Controller\BasicController::improved
+    requirements: 
+        typeData: temperature|co2|luminosity|humidity 
