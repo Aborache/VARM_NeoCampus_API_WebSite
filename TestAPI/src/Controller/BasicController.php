@@ -28,7 +28,7 @@ class BasicController extends Controller
         if (($f = fopen($publicResourcesFolderPath.$temps, "w+")) !== FALSE){
             if (($handle = fopen($publicResourcesFolderPath.$filename, "r")) !== FALSE) {
                 $cpt = 0;
-                while ((($data = fgetcsv($handle,1000, ";")) !== FALSE)&&($cpt++ < 1000000)) {
+                while ((($data = fgetcsv($handle,1000, ";")) !== FALSE)&&($cpt++ < 100000)) {
                     //$num = count($data);
                     if ($data[0] == $typeData){
                         fputcsv($f,$data,";");
