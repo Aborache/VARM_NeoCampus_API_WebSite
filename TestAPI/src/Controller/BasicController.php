@@ -82,7 +82,7 @@ class BasicController extends Controller
                 $tab = array();
                 $pos = 0;
                 $leg = "type".  ";" . "place" . ";" . "value" . ";" . "date" . ";" . "unit" . ";" . "ilot";
-                while ((($data = fgetcsv($handle,1000, ";")) !== FALSE)&&($cpt++ < 1000)) {
+                while ((($data = fgetcsv($handle,1000, ";")) !== FALSE)&&($cpt++ < 10000000)) {
                     //$num = count($data);
                     if ((substr_count ($data[1], $typeData)) > 0){
                         $ligne = '';
