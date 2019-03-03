@@ -5,6 +5,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\File;
+use PDO;
+use PDOException;
 
 class BasicController extends Controller
 {
@@ -109,6 +111,50 @@ class BasicController extends Controller
             $response->headers->set('Content-Type', 'text/csv');
             $response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
             return $response;        
+    }
+    public function testBDD(){
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        
+        try {
+            $conn = new PDO("mysql:host=$servername;dbname=neocampusapi", $username, $password);
+            // set the PDO error mode to exception
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmt = $conn->prepare("SELECT id, valeur, date FROM mesure");
+            $stmt->execute();
+            $leg = "id".  ";" . "valeur" . ";" . "date";
+            $pos = $stmt->rowCount();
+            $res = $stmt->fetchAll();
+            
+            $tab = array();
+            $pos = 0;
+            foreach ($res as $row){
+                $ligne = "";
+                $bug = true;
+                foreach ($row as $elem){
+                    if ($bug) {
+                    $ligne = $ligne . $elem . ";" ;
+                    }
+                    $bug = ! $bug;
+                }
+                $tab[$pos] = $ligne;
+                $pos++;
+            }
+            $response = $this->render('retour.csv.twig',[
+                'tableau' => $tab,
+                'nbLigne' => $pos,
+                'legende' => $leg
+            ]);
+            $response->headers->set('Content-Type', 'text/csv');
+            $response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
+            return $response;
+        }
+        catch(PDOException $e)
+        {
+            echo "Connection failed: " . $e->getMessage();
+        }
+        return "no";
     }
     
     

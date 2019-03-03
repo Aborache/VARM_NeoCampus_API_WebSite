@@ -21,4 +21,7 @@ app_test_file-portion3:
     path: /Test/best/{typeData}
     controller: App\Controller\BasicController::improved
     requirements: 
-        typeData: temperature|co2|luminosity|humidity 
+        typeData: temperature|co2|luminosity|humidity
+app_test_data_base:
+    path: /Test/BDD
+    controller: App\Controller\BasicController::testBDD     
