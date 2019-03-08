@@ -7,9 +7,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\File;
 use PDO;
 use PDOException;
+use App\Utils\DatabaseConnector;
 
 class BasicController extends Controller
 {
+    protected $db = Null;
+    
     public function allCSV()
     {
        
@@ -113,48 +116,44 @@ class BasicController extends Controller
             return $response;        
     }
     public function testBDD(){
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
+        if ($this->db == NULL){
+            $this->db = new DatabaseConnector();
+        }
+        $myReq = "SELECT id, valeur, date FROM mesure";
+        $stmt = $this->db->request($myReq);
+        $attributlist = array_keys($stmt[1]);
+        $leg = ""; //"id".  ";" . "valeur" . ";" . "date";
+        $bug = true;
         
-        try {
-            $conn = new PDO("mysql:host=$servername;dbname=neocampusapi", $username, $password);
-            // set the PDO error mode to exception
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->prepare("SELECT id, valeur, date FROM mesure");
-            $stmt->execute();
-            $leg = "id".  ";" . "valeur" . ";" . "date";
-            $pos = $stmt->rowCount();
-            $res = $stmt->fetchAll();
-            
-            $tab = array();
-            $pos = 0;
-            foreach ($res as $row){
-                $ligne = "";
-                $bug = true;
-                foreach ($row as $elem){
-                    if ($bug) {
-                    $ligne = $ligne . $elem . ";" ;
-                    }
-                    $bug = ! $bug;
-                }
-                $tab[$pos] = $ligne;
-                $pos++;
+        foreach ($attributlist as $attribut){
+            if ($bug) {
+                $leg = $leg . $attribut . ";" ;
             }
-            $response = $this->render('retour.csv.twig',[
-                'tableau' => $tab,
-                'nbLigne' => $pos,
-                'legende' => $leg
-            ]);
-            $response->headers->set('Content-Type', 'text/csv');
-            $response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
-            return $response;
+            $bug = ! $bug;
         }
-        catch(PDOException $e)
-        {
-            echo "Connection failed: " . $e->getMessage();
+        $attributs = array();
+        
+        $tab = array();
+        $pos = 0;
+        foreach ($stmt as $row){
+            $ligne = "";
+            foreach ($row as $elem){
+                if ($bug) {
+                    $ligne = $ligne . $elem . ";" ;
+                }
+                $bug = ! $bug;
+            }
+            $tab[$pos] = $ligne;
+            $pos++;
         }
-        return "no";
+        $response = $this->render('retour.csv.twig',[
+            'tableau' => $tab,
+            'nbLigne' => $pos,
+            'legende' => $leg
+        ]);
+        $response->headers->set('Content-Type', 'text/csv');
+        $response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
+        return $response;
     }
     
     
