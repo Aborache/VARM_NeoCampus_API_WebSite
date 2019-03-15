@@ -2,7 +2,7 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-# route de test chargement fichier
+# routes de test
 app_test_allCSV:
     path: /Test/allCSV
     controller: App\Controller\BasicController::allCSV
@@ -22,6 +22,67 @@ app_test_file-portion3:
     controller: App\Controller\BasicController::improved
     requirements: 
         typeData: temperature|co2|luminosity|humidity
+        
 app_test_data_base:
     path: /Test/BDD
-    controller: App\Controller\BasicController::testBDD     
+    controller: App\Controller\BasicController::testBDD
+    
+app_test_data_base_param:
+    path: /Test/BDD/{typeData}/{typeLieu}/{lieu}/{dateDebut}/{dateFin}
+    controller: App\Controller\BasicController::parserBDD
+    requirements: 
+        typeData: temperature|co2|luminosity|humidity
+        typeLieu: batiment|salle|ilot
+
+# routes des paramètres         
+app_Batiments:
+    path: /Buildings
+    controller: App\controller\ParametersController::Batiments
+    
+app_Salles:
+    path: /Rooms/{id_batiment}
+    controller: App\controller\ParametersController::Salles
+
+app_Ilots:
+    path: /Clusters/{id_salle}
+    controller: App\controller\ParametersController::Ilots
+    
+app_Types_donnee:
+    path: /Data_types
+    controller: App\controller\ParametersController::listeTypesdonnes
+    
+app_Types_meteo:
+    path: /Weather_types
+    controller: App\controller\ParametersController::listeTypesMeteo
+
+app_liste_Prevision:
+    path: /Weather_types
+    controller: App\controller\ParametersController::listePrevisions
+   
+# routes de retour d'information
+
+app_info_Salle:
+    path: /Room_Informations/{id_salle}
+    controller: App\controller\CollectorController::InformationsSalle
+
+app_info_Meteo:
+    path: /Meteo/{date_debut}/{date_fin}/{prevision}/{listetypeMeteo}
+    controller: App\controller\CollectorController::meteo
+    requirements:
+        prevision: actuel|30minutes|2heures|8heures|24heures
+
+app_info_Donnee:
+    path: /Data/{date_debut}/{date_fin}/{type_lieu}/{lieu}/{typeDonne}
+    controller: App\controller\CollectorController::DonneeBase
+    requirements:
+        type_lieu: Building|Room|Cluster
+    
+app_info_vector:
+    path: /Vector/{date_debut}/{date_fin}/{type_lieu}/{lieu}/{liste_Types_Donne}/{liste_Previsions}/{liste_Type_Meteos}/{methode_Regroupe}/{taille_Plage}
+    controller: App\controller\CollectorController::DonneeBase
+    requirements:
+        type_lieu: Building|Room|Cluster
+        methode_Regroupe: avg
+  
+        
+     

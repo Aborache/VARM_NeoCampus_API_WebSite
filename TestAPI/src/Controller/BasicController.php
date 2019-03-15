@@ -5,8 +5,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\File;
-use PDO;
-use PDOException;
+
 use App\Utils\DatabaseConnector;
 
 class BasicController extends Controller
@@ -155,6 +154,7 @@ class BasicController extends Controller
         $response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
         return $response;
     }
+    
     
     
     
