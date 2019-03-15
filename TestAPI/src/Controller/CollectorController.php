@@ -19,7 +19,7 @@ class CollectorController extends Controller
     
     function VectorSimple ($dateDebut, $dateFin, $type_lieu, $lieu, $liste_Types_Donne,$liste_Previsions, $liste_Type_Meteos, $methode_Regroupe, $taille_Plage ){
     }
-    }
+    
         
     
     
