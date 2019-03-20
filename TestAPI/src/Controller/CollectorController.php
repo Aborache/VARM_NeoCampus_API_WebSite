@@ -1,11 +1,17 @@
 <?php
-namespace src\Controller;
+namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use App\Utils\DatabaseConnector;
 
 class CollectorController extends Controller
 {
+    protected $db = Null;
+    
+    
+    
     function InformationsSalle($id_salle){
+        
         
     }
     
@@ -19,12 +25,7 @@ class CollectorController extends Controller
     
     function VectorSimple ($dateDebut, $dateFin, $type_lieu, $lieu, $liste_Types_Donne,$liste_Previsions, $liste_Type_Meteos, $methode_Regroupe, $taille_Plage ){
     }
-    
-        
-    
-    
-    
-   
+      
 
     
 }
