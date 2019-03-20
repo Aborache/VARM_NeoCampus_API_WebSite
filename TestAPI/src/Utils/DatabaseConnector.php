@@ -13,7 +13,7 @@ class DatabaseConnector
     public function __construct()
     {
         try {
-            $this->conn = new PDO("mysql:host=$this->servername;dbname=neocampusapi", $this->username, $this->password);
+            $this->conn = new PDO("mysql:host=$this->servername;dbname=neocampusdataapi", $this->username, $this->password);
             // set the PDO error mode to exception
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
