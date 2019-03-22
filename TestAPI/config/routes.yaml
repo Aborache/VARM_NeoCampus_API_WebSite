@@ -75,13 +75,13 @@ app_info_Donnee:
     path: /Data/{date_debut}/{date_fin}/{type_lieu}/{lieu}/{typeDonne}
     controller: App\Controller\CollectorController::DonneeBase
     requirements:
-        type_lieu: Building|Room|Cluster
+        type_lieu: Building|Room|Cluster|All
     
 app_info_vector:
     path: /Vector/{date_debut}/{date_fin}/{type_lieu}/{lieu}/{liste_Types_Donne}/{liste_Previsions}/{liste_Type_Meteos}/{methode_Regroupe}/{taille_Plage}
     controller: App\Controller\CollectorController::DonneeBase
     requirements:
-        type_lieu: Building|Room|Cluster
+        type_lieu: Building|Room|Cluster|All
 
   
         
