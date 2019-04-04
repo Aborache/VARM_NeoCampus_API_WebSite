@@ -5,3 +5,7 @@ index:
 form_salle:
     path: /salle
     controller: App\Controller\ControllerSalle::formSalle
+
+form_info_donnees:
+    path: /donnees
+    controller: App\Controller\ControllerDonnees::formDonnees 
