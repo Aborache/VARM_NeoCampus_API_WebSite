@@ -79,7 +79,7 @@ app_info_Donnee:
     
 app_info_vector:
     path: /Vector/{date_debut}/{date_fin}/{type_lieu}/{lieu}/{liste_Types_Donne}/{methode_Regroupe}/{taille_Plage}
-    controller: App\Controller\CollectorController::DonneeBase
+    controller: App\Controller\CollectorController::VectorSimple
     requirements:
         type_lieu: Building|Room|Cluster|All
         methode_Regroupe: min|max|avg
