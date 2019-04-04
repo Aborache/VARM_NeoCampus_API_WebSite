@@ -1,6 +1,6 @@
 <?php
 
-namespace Form;
+namespace App\Form;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -28,7 +28,7 @@ class SalleForm extends AbstractType
   public function configureOptions(OptionsResolver $resolver)
   {
     $resolver->setDefaults(array(
-      'data_class' => 'GamesBundle\Entity\Difficulty'
+      'data_class' => 'App\Entity\Salle'
     ));
   }
 }

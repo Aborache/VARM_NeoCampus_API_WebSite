@@ -3,8 +3,8 @@
 // src/Controller/ControllerSalle.php
 namespace App\Controller;
 
-use Entity\Salle;
-use Form\SalleForm;
+use App\Entity\Salle;
+use App\Form\SalleForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ControllerSalle extends Controller
