@@ -3,17 +3,19 @@ namespace App\Utils;
 
 use PDO;
 use PDOException;
+use Symfony\Component\HttpFoundation\Request;
 
 class DatabaseConnector
 {
     protected $conn;
     protected $servername = "localhost";
+    protected $dbname = "totalapi";
     protected $username = "root";
     protected $password = "";
     public function __construct()
     {
         try {
-            $this->conn = new PDO("mysql:host=$this->servername;dbname=neocampusdataapi", $this->username, $this->password);
+            $this->conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
             // set the PDO error mode to exception
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
@@ -44,5 +46,6 @@ class DatabaseConnector
         }
         return($res);
     }
+    
 }
 

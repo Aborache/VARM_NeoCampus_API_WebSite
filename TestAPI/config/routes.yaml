@@ -78,10 +78,12 @@ app_info_Donnee:
         type_lieu: Building|Room|Cluster|All
     
 app_info_vector:
-    path: /Vector/{date_debut}/{date_fin}/{type_lieu}/{lieu}/{liste_Types_Donne}/{liste_Previsions}/{liste_Type_Meteos}/{methode_Regroupe}/{taille_Plage}
+    path: /Vector/{date_debut}/{date_fin}/{type_lieu}/{lieu}/{liste_Types_Donne}/{methode_Regroupe}/{taille_Plage}
     controller: App\Controller\CollectorController::DonneeBase
     requirements:
         type_lieu: Building|Room|Cluster|All
+        methode_Regroupe: min|max|avg
+        taille_Plage: sec|min|hour|day|mounth|year
 
   
         
