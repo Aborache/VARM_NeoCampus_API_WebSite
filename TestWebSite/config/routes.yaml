@@ -1,3 +1,7 @@
 index:
     path: /menu
     controller: App\Controller\DefaultController::menuAction
+
+form_salle:
+    path: /salle
+    controller: App\Controller\ControllerSalle::formSalle
