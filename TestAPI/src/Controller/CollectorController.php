@@ -42,7 +42,7 @@ class CollectorController extends BaseAPIController {
         
     }
     
-    function VectorSimple ($dateDebut, $dateFin, $type_lieu, $lieu, $liste_Types_Donne, $methode_Regroupe, $taille_Plage ){
+    function VectorSimple ($date_debut, $date_fin, $type_lieu, $lieu, $liste_Types_Donne, $methode_Regroupe, $taille_Plage ){
         switch ($taille_Plage){
             case "sec":
                 $interv = 0;
@@ -80,7 +80,7 @@ class CollectorController extends BaseAPIController {
             
         }
         
-        $dates = "date > '".$dateDebut."'AND date < '".$dateFin."' ";
+        $dates = "date > '".$date_debut."'AND date < '".$date_fin."' ";
             
         
         $cpt = 1;
@@ -88,7 +88,7 @@ class CollectorController extends BaseAPIController {
         $part2 = "";
         $part3 = " ";
         foreach (explode(" ",$liste_Types_Donne) as $value){
-            $part1 = $part1.", t".$cpt.".regroupeVar";
+            $part1 = $part1.", t".$cpt.".regroupeVar".$cpt;
             
             if ($cpt != 1){                
                 $part2 = $part2.", ";
@@ -101,14 +101,14 @@ class CollectorController extends BaseAPIController {
                 }
                     
             }
-            $part2 = $part2."(SELECT ".$methode_Regroupe."(valeur) regroupeVar, ROUND(date,".$interv.
+            $part2 = $part2."(SELECT ".$methode_Regroupe."(valeur) regroupeVar".$cpt.", ROUND(date,".$interv.
             ") temps FROM  v_m".$value.$position.$dates."GROUP BY (ROUND(date,".$interv.
             ") )) as t".$cpt." ";
             
             
             $cpt++;            
         }
-        return $this->simpleRequest($part1.$part2.$part3);
+        return $this->simpleRequest($part1." FROM ".$part2.$part3);
         
         
             

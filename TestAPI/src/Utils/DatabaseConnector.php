@@ -9,7 +9,7 @@ class DatabaseConnector
 {
     protected $conn;
     protected $servername = "localhost";
-    protected $dbname = "totalapi";
+    protected $dbname = "testapiv3";
     protected $username = "root";
     protected $password = "";
     public function __construct()
