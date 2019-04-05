@@ -16,9 +16,8 @@ class SalleForm extends AbstractType
       ->add('salle', ChoiceType::class,
           array('label' =>'Salle :',
             'choices'  => array(
-              'U3 101' => 1,
-              'U3 102' => 2,
-              'U3 103' => 3,
+              'U4 302' => 79,
+              'U4 Sablab' => 341,
           )
       ))
       ->add('Ok',SubmitType::class,  array(
