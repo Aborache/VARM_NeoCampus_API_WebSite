@@ -7,34 +7,6 @@
     <body>
     		<button><a href= "{{ path('form_salle' , {}) }}" class = 'btn_salle'>Salles</a></button>
     		<button><a href= "{{ path('form_info_donnees' , {}) }}" class = 'btn_donnees'>Donnees</a></button>
-    	<!--
-        <form method="post" action="DefaultController.php">
-   			<p>
-   				Cochez le bâtiment dont vous souhaitez avoir les données :<br />
-       			<input type="checkbox" name="U3" id="bat_u3" /> <label for="U3">U3</label><br />
-       			<input type="checkbox" name="U4" id="bat_u4" /> <label for="U4">U4</label><br />
-
-       			De quand à quand :<br />
-				<input type="date" name="debut" id="debut" /> <label for="debut">debut</label><br />
-   				<input type="date" name="fin" id="fin" /> <label for="fin">fin</label><br />
-
-   				Le type de lieu :<br />
-   				<input type="checkbox" name="building" id="building" /> <label for="building">building</label><br />
-   				<input type="checkbox" name="room" id="room" /> <label for="room">room</label><br />
-   				<input type="checkbox" name="cluster" id="cluster" /> <label for="cluster">cluster</label><br />
-   				<input type="checkbox" name="all" id="all" /> <label for="all">all</label><br />
-   			</p>
-		</form>
-
-		<form method="post" action="DefaultController.php">
-   			<p>
-   				Cochez le type de mesure que vous voulez :<br />
-       			<input type="checkbox" name="Co2" id="Co2" /> <label for="Co2">Co2</label><br />
-       			<input type="checkbox" name="Luminosité" id="Luminosité" /> <label for="Luminosité">Luminosité</label><br />
-       			<input type="checkbox" name="Température" id="Température" /> <label for="Température">Température</label><br />
-       			<input type="checkbox" name="Humidité" id="Humidité" /> <label for="Humidité">Humidité</label>
-   			</p>
-		</form>
-		-->
+        <button><a href= "{{ path('form_donnees_vector' , {}) }}" class = 'btn_donnees'>Vector</a></button>
     </body>
 </html>

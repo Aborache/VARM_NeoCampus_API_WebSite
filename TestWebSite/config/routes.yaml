@@ -9,3 +9,7 @@ form_salle:
 form_info_donnees:
     path: /donnees
     controller: App\Controller\ControllerDonnees::formDonnees 
+
+form_donnees_vector:
+    path: /vector
+    controller: App\Controller\ControllerVector::formVector

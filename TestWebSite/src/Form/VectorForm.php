@@ -9,7 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class DonneesForm extends AbstractType
+class VectorForm extends AbstractType
 {
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
@@ -39,14 +39,35 @@ class DonneesForm extends AbstractType
               'U4 SalLab 57' => 6,
               )
             ))
-      ->add('typeDonnee', ChoiceType::class,
-          array ('label' => 'Type de Donnees : ',
+      ->add('listTypeDonnee', ChoiceType::class,
+          array ('label' => 'Liste Type de Donnees : ',
             'choices' => array(
               'co2' => 4,
               'luminosité intérieur' => 3,
               'temperature' => 1,
               'luminusité exterieur' => 5,
               'humidité' => 2,
+              ),
+            'multiple' => true,
+            'expanded' => true,
+            ))
+      ->add('methode', ChoiceType::class,
+          array ('label' => 'Methode : ',
+            'choices' => array(
+              'Minimum' => 'min',
+              'Maximum' => 'max',
+              'Mooyenne' => 'avg',
+              )
+            ))
+      ->add('taille', ChoiceType::class,
+          array ('label' => 'Taille : ',
+            'choices' => array(
+              'Seconde' => 'sec',
+              'Minute' => 'min',
+              'Heure' => 'hour',
+              'Jour' => 'day',
+              'Mois' => 'mounth',
+              'Annee' => 'year',
               )
             ))
       ->add('Ok',SubmitType::class,  array(
@@ -56,7 +77,7 @@ class DonneesForm extends AbstractType
   public function configureOptions(OptionsResolver $resolver)
   {
     $resolver->setDefaults(array(
-      'data_class' => 'App\Entity\Donnees'
+      'data_class' => 'App\Entity\Vector'
     ));
   }
 }
