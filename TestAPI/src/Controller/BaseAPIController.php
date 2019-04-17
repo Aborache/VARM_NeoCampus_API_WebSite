@@ -16,17 +16,21 @@ class BaseAPIController extends AbstractController
     protected function simpleRequest($req){
         
         $stmt = $this->db->request($req);
-        $attributlist = array_keys($stmt[0]);
-        $leg = ""; //"id".  ";" . "valeur" . ";" . "date";
-        $bug = true;
-        
-        foreach ($attributlist as $attribut){
-            if ($bug) {
-                $leg = $leg . $attribut . ";" ;
+        if (empty($stmt)){
+            $leg = "result is empty";
+        }else{
+
+            $attributlist = array_keys($stmt[0]);
+            $leg = ""; //"id".  ";" . "valeur" . ";" . "date";
+            $bug = true;
+            
+            foreach ($attributlist as $attribut){
+                if ($bug) {
+                    $leg = $leg . $attribut . ";" ;
+                }
+                $bug = ! $bug;
             }
-            $bug = ! $bug;
-        }
-        
+            }
         $tab = array();
         $pos = 0;
         foreach ($stmt as $row){

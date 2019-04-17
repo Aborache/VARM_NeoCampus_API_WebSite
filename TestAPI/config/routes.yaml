@@ -83,7 +83,7 @@ app_info_vector:
     requirements:
         type_lieu: Building|Room|Cluster|All
         methode_Regroupe: min|max|avg
-        taille_Plage: sec|min|hour|day|mounth|year
+        taille_Plage: sec|min|hour|day|month|year
 
   
         

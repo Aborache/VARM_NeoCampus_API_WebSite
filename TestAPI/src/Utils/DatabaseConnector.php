@@ -3,7 +3,6 @@ namespace App\Utils;
 
 use PDO;
 use PDOException;
-use Symfony\Component\HttpFoundation\Request;
 
 class DatabaseConnector
 {

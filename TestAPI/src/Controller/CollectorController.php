@@ -56,7 +56,7 @@ class CollectorController extends BaseAPIController {
             case "day":
                 $interv = -6;
                 break;
-            case "mounth":
+            case "month":
                 $interv = -8;
                 break;
             case "year":
