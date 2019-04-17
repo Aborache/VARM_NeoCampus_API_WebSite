@@ -1,7 +1,14 @@
 <?php
 namespace App\Controller;
 
-
+/**
+ * 
+ * controlleur gerant toutes les routes
+ * servant à obtenir des paramètre 
+ * utilisables ensuite pour réaliser des
+ * requetes avancées
+ *
+ */
 class ParametersController extends BaseAPIController {
     
     

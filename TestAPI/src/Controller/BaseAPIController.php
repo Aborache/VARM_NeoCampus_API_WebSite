@@ -3,7 +3,12 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Utils\DatabaseConnector;
-
+use Symfony\Component\HttpFoundation\File\File;
+/**
+ *Controleur de haut niveau
+ *propose des service de BD
+ * 
+ */
 class BaseAPIController extends AbstractController
 {
     protected $db = Null;
@@ -12,7 +17,12 @@ class BaseAPIController extends AbstractController
         $this->db = new DatabaseConnector();
         
     }
-    
+    /**
+     * fonction produisant le fichier résultat
+     * à partir d'une requete 
+     * @param string $req la requete sql
+     * @return File $response le fichier à retourner
+     */
     protected function simpleRequest($req){
         
         $stmt = $this->db->request($req);

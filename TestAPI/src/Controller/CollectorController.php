@@ -1,17 +1,39 @@
 <?php
 namespace App\Controller;
 
-
+/**
+ * controlleur regroupant
+ * les fonctionalités avancées
+ *
+ */
 class CollectorController extends BaseAPIController {       
-    
+    /**
+     * a partir de l'id d'une salle
+     * retourne ses caractéristiques 
+     * @param string id de la salle
+     */
     function InformationsSalle($id_salle){
         return $this->simpleRequest("SELECT * FROM salle WHERE id = ".$id_salle);
         
     }
     
+    /**
+     * A dévelloper une fois que 
+     * 1.1 aura integré la meteo 
+     */
     function meteo($date_debut,$date_fin, $prevision, $listetypeMeteo ){}
          
     
+    /**
+     * produit la liste des donnée du type demandé
+     * avec les limitations saisie
+     * @param $date_debut string la date de début
+     * @param $date_fin string  la date de fin
+     * @param $type_lieu string le type du lieu
+     * @param $lieu string l'id du lieu
+     * @param $typeDonne string l'id du type de donnée
+     *     
+     */
     function DonneeBase($date_debut, $date_fin, $type_lieu, $lieu, $typeDonne){
         /*http://localhost:8000/Data/2017-09-12%20::23::41/2017-09-12%20::23::45/Cluster/24377/1 */
         /*http://localhost:8000/Data/2017-09-12%20::23::41/2017-09-12%20::23::45/All/24377/1 */
@@ -42,6 +64,19 @@ class CollectorController extends BaseAPIController {
         
     }
     
+    /**
+     * produit la liste des donnée des type de donné
+     * fusionné par période de temps
+     * avec les limitations saisie
+     * @param $date_debut string la date de début
+     * @param $date_fin string  la date de fin
+     * @param $type_lieu string le type du lieu
+     * @param $lieu string l'id du lieu
+     * @param $liste_Types_Donne string les ids des type de donnée
+     * @param $methode_Regroupe string la methode pour fusionner les donnèe d'un meme type 
+     * @param $taille_Plage string la taille de la plage de fusion temporelle
+     *
+     */
     function VectorSimple ($date_debut, $date_fin, $type_lieu, $lieu, $liste_Types_Donne, $methode_Regroupe, $taille_Plage ){
         switch ($taille_Plage){
             case "sec":

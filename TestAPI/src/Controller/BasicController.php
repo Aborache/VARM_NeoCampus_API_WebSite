@@ -6,6 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use App\Utils\DatabaseConnector;
 
+/**
+ * controlleur de test
+ * et de démonstration
+ * ne doit pas servir pour 
+ * le fonctionnment public
+ *
+ */
 class BasicController extends Controller
 {
     protected $db = Null;
@@ -128,7 +135,6 @@ class BasicController extends Controller
             }
             $bug = ! $bug;
         }
-        $attributs = array();
         
         $tab = array();
         $pos = 0;
