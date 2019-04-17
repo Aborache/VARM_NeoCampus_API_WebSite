@@ -21,10 +21,22 @@ class ControllerVector extends Controller
             $dateFin = $vector->getDateFin()->format('Y-m-d%H::i::s');
             $typeLieu = $vector->getTypeLieu();
             $lieu = $vector->getLieu();
+            
             $listTypeDonnee = $vector->getListTypeDonnee();
+            $prem = true;
+            $lestypes="";
+            foreach ($listTypeDonnee as $elem){
+                if ($prem){
+                    $lestypes = $elem;
+                    $prem = false;
+                }else{                   
+                    $lestypes= $lestypes." ".$elem;                   
+                }
+            }
+            
             $methode = $vector->getMethode();
             $taille = $vector->getTaille();
-            $lienURL = $adresseAPI.'/'.$dateDebut.'/'.$dateFin.'/'.$typeLieu.'/'.$lieu.'/'.$listTypeDonnee.'/'.$methode.'/'.$taille;
+            $lienURL = $adresseAPI.'/'.$dateDebut.'/'.$dateFin.'/'.$typeLieu.'/'.$lieu.'/'.$lestypes.'/'.$methode.'/'.$taille;
 
             return $this->redirect($lienURL);
         }
